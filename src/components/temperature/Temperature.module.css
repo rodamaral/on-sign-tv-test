@@ -36,3 +36,10 @@
 .reportText {
     margin: initial, auto;
 }
+
+.error {
+    color: #d8000c !important;
+    background-color: #ffd2d2 !important;
+    font-size: 12px !important;
+    text-align: center !important;
+}
