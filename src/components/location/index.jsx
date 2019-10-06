@@ -1,11 +1,30 @@
 import React, {useState} from 'react'
 import {component} from './Location.module.css';
+import {fetchGeolocation} from '../../utils/api.js'
 
-export default function Location({getLocation}) {
+export default function Location({getLocation, setLatitude, setLongitude}) {
     const [value, setValue] = useState('')
 
     const onChange = event => {
         setValue(event.target.value)
+    }
+
+    function success(pos) {
+        const crd = pos.coords;
+        console.warn(crd)
+
+        setLatitude(crd.latitude)
+        setLongitude(crd.longitude)
+    }
+
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    const onGetLocation = () => {
+        fetchGeolocation(success, error)
+            .then(success)
+            .catch(error)
     }
 
     const onSubmit = () => {
@@ -27,6 +46,10 @@ export default function Location({getLocation}) {
 
             <button onClick={onSubmit}>
                 Get coordinates
+            </button>
+
+            <button onClick={onGetLocation}>
+                Test navigator
             </button>
         </section>
     )

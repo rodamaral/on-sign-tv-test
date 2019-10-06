@@ -2,7 +2,7 @@ import React from 'react';
 import Coordinate from './Coordinate'
 import {division, button} from './Temperature.module.css';
 
-export default function Inputs({latitude, longitude, setLatitude, setLongitude}) {
+export default function Inputs({latitude, longitude, setLatitude, setLongitude, onSubmit}) {
     return (
         <div>
             <div className={division}>
@@ -20,7 +20,7 @@ export default function Inputs({latitude, longitude, setLatitude, setLongitude})
             </div>
 
             <div className={division}>
-                <button className={button}>
+                <button className={button} onClick={onSubmit}>
                     Show Temperature
                 </button>
             </div >

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Header from './components/header'
 import Location from './components/location'
 import Temperature from './components/temperature'
-import {testGeoApi, fetchGoogle, fetchWeather} from './utils/api.js'
+import {fetchGoogle} from './utils/api.js'
 import './App.css'
 
 export default function App() {
@@ -25,7 +25,13 @@ export default function App() {
     return (
         <>
             <Header />
-            <Location getLocation={getLocation} />
+
+            <Location
+                getLocation={getLocation}
+                setLatitude={setLatitude}
+                setLongitude={setLongitude}
+            />
+
             <Temperature
                 latitude={latitude}
                 longitude={longitude}

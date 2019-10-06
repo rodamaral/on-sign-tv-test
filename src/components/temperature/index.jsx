@@ -1,9 +1,25 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Inputs from './Inputs'
-import {testGeoApi, fetchWeather} from '../../utils/api.js'
+import Report from './Report'
+import {fetchGeolocation, fetchWeather} from '../../utils/api.js'
 import {component, header, title} from './Temperature.module.css';
 
 export default function Temperature({latitude, longitude, setLatitude, setLongitude}) {
+    const [temperature, setTemperature] = useState('')
+
+    const onSubmit = () => {
+        console.warn('onSubmit', latitude, longitude)
+
+        fetchWeather(latitude, longitude)
+            .then(res => {
+                console.log(res.main.temp, res)
+                setTemperature(res.main.temp)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
     return (
         <section className={component}>
             <header className={header}>
@@ -17,21 +33,14 @@ export default function Temperature({latitude, longitude, setLatitude, setLongit
                 longitude={longitude}
                 setLatitude={setLatitude}
                 setLongitude={setLongitude}
+                onSubmit={onSubmit}
             />
 
-            <div>
-                <span>
-                    Temperature at {latitude} , {longitude} is TEMP °C
-                </span>
-            </div>
-
-            <button onClick={() => testGeoApi()}>
-                Test navigator
-            </button>
-
-            <button onClick={() => fetchWeather(-20, -30).then(res => console.info(res))}>
-                Test openweathermap
-            </button>
+            <Report
+                latitude={latitude}
+                longitude={longitude}
+                temperature={temperature}
+            />
         </section>
     )
 }

@@ -4,24 +4,11 @@ const GOOGLE_KEY = 'AIzaSyAg6rz9WIBVRKGEo-Zqx9tjDxSTF4Yk6rs'
 const OPEN_WEATHER_BASE_URL = 'http://api.openweathermap.org/data/2.5/weather'
 const OPEN_WEATHER_KEY = 'b78eb13035123aa706e7715ef9d79f6c'
 
-const geolocationOptions = {
+const GEOLOCATION_OPTIONS = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0
 };
-
-function success(pos) {
-    const crd = pos.coords;
-
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-}
-
-function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-}
 
 async function get(url) {
     const res = await fetch(url)
@@ -30,8 +17,10 @@ async function get(url) {
     return await res.json()
 }
 
-export function testGeoApi() {
-    navigator.geolocation.getCurrentPosition(success, error, geolocationOptions);
+export function fetchGeolocation() {
+    return new Promise(function (resolve, reject) {
+        navigator.geolocation.getCurrentPosition(resolve, reject, GEOLOCATION_OPTIONS);
+    })
 }
 
 export function fetchGoogle(address) {
