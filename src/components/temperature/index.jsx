@@ -5,15 +5,23 @@ import {fetchWeather} from '../../utils/api.js'
 import {component, header, title} from './Temperature.module.css';
 
 export default function Temperature({latitude, longitude, setLatitude, setLongitude}) {
+    const [reportLat, setReportLat] = useState('')
+    const [reportLong, setReportLong] = useState('')
     const [temperature, setTemperature] = useState('')
 
     const onSubmit = () => {
-        console.warn('onSubmit', latitude, longitude)
+        // FIXME
+        const lat = latitude
+        const long = longitude
 
         fetchWeather(latitude, longitude)
             .then(res => {
                 console.log(res.main.temp, res)
-                setTemperature(res.main.temp)
+
+                const {temp} = res.main
+                setTemperature(temp)
+                setReportLat(lat)
+                setReportLong(long)
             })
             .catch(error => {
                 console.error(error)
@@ -37,8 +45,8 @@ export default function Temperature({latitude, longitude, setLatitude, setLongit
             />
 
             <Report
-                latitude={latitude}
-                longitude={longitude}
+                latitude={reportLat}
+                longitude={reportLong}
                 temperature={temperature}
             />
         </section>

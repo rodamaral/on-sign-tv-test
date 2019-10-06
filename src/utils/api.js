@@ -26,17 +26,14 @@ export function fetchGeolocation() {
 export function fetchGoogle(address) {
     const url = new URL(GOOGLE_BASE_URL)
     const params = {address, key: GOOGLE_KEY}
-
     url.search = new URLSearchParams(params)
 
     return get(url)
 }
 
-export function fetchWeather(lon, lat) {
+export function fetchWeather(lat, lon) {
     const url = new URL(OPEN_WEATHER_BASE_URL)
-    // TODO: custom units
     const params = {lon, lat, units: 'metric', appid: OPEN_WEATHER_KEY}
-
     url.search = new URLSearchParams(params)
 
     return get(url)
