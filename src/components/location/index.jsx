@@ -2,11 +2,18 @@ import React, {useState} from 'react'
 import Tooltip from '@material-ui/core/Tooltip'
 import MyLocation from '@material-ui/icons/MyLocation'
 import Button from '../shared/Button'
+import SnackError from '../shared/SnackError'
 import {component, locationIcon, input, header} from './Location.module.css';
-import {fetchGeolocation} from '../../utils/api.js'
+import {fetchGeolocation, fetchGoogle, fetchGoogleErrors} from '../../utils/api.js'
 
-export default function Location({getLocation, setLatitude, setLongitude}) {
+export default function Location({setLatitude, setLongitude}) {
     const [value, setValue] = useState('')
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState('');
+
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     const onChange = event => {
         setValue(event.target.value)
@@ -16,12 +23,33 @@ export default function Location({getLocation, setLatitude, setLongitude}) {
         fetchGeolocation()
             .then(pos => {
                 const crd = pos.coords;
-
                 setLatitude(crd.latitude)
                 setLongitude(crd.longitude)
+                setOpen(false);
             })
             .catch(error => {
-                console.warn(`ERROR(${error.code}): ${error.message}`);
+                setMessage(error.message)
+                setOpen(true);
+            })
+    }
+
+    const getLocation = text => {
+        fetchGoogle(text)
+            .then(res => {
+                const {results} = res
+
+                if (results.length > 0) {
+                    const {lat, lng} = results[0].geometry.location
+                    setLatitude(lat)
+                    setLongitude(lng)
+                    setOpen(false);
+                } else {
+                    throw new Error('ZERO_RESULTS')
+                }
+            })
+            .catch(error => {
+                setMessage(fetchGoogleErrors(error))
+                setOpen(true);
             })
     }
 
@@ -54,6 +82,12 @@ export default function Location({getLocation, setLatitude, setLongitude}) {
                     onClick={onSubmit}
                 />
             </div>
+
+            <SnackError
+                open={open}
+                onClose={handleClose}
+                message={message}
+            />
         </section>
     )
 }

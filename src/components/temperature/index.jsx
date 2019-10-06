@@ -1,16 +1,16 @@
 import React, {useState} from 'react'
-// import Snackbar from '@material-ui/core/Snackbar'
-import Snackbar from '../shared/SnackError'
+import SnackError from '../shared/SnackError'
 import Inputs from './Inputs'
 import Report from './Report'
-import {fetchWeather} from '../../utils/api.js'
-import {component, header, title, error} from './Temperature.module.css';
+import {fetchWeather, fetchWeatherErrors} from '../../utils/api.js'
+import {component, header, title} from './Temperature.module.css';
 
 export default function Temperature({latitude, longitude, setLatitude, setLongitude}) {
     const [reportLat, setReportLat] = useState('')
     const [reportLong, setReportLong] = useState('')
     const [temperature, setTemperature] = useState('')
     const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState('');
 
     const handleClose = () => {
         setOpen(false)
@@ -25,7 +25,7 @@ export default function Temperature({latitude, longitude, setLatitude, setLongit
                 setOpen(false);
             })
             .catch(error => {
-                console.error(error)
+                setMessage(fetchWeatherErrors(error))
                 setOpen(true);
             })
     }
@@ -46,10 +46,10 @@ export default function Temperature({latitude, longitude, setLatitude, setLongit
                 onSubmit={onSubmit}
             />
 
-            <Snackbar
+            <SnackError
                 open={open}
                 onClose={handleClose}
-                message="API error"
+                message={message}
             />
 
             <Report
