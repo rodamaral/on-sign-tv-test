@@ -1,0 +1,10 @@
+.header {
+    color: #FFFEFF;
+    background-color: #353A40;
+}
+
+.title {
+    max-width: 720px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
