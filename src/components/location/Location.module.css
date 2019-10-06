@@ -7,3 +7,36 @@
     border-radius: 4px;
     max-width: 600px;
 }
+
+.component > header {
+    padding: 20px;
+}
+
+.component > div {
+    border-top: 5px solid magenta;
+    padding: 20px;
+}
+
+.header {
+    background-color: #F7F7F7;
+}
+
+.input {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.input > * {
+    /* display: flex; */
+    /* flex-flow: row; */
+    /* align-content: space-around; */
+    margin-right: 10px;
+}
+
+.locationIcon {
+    cursor: pointer;
+    height: 0.8em !important;
+    margin-left: 0.2em !important
+}

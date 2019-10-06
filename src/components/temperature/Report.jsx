@@ -1,4 +1,5 @@
 import React from 'react'
+import {reportText} from './Temperature.module.css'
 
 export default function Report({latitude, longitude, temperature}) {
     if (!latitude || !longitude || !temperature) {
@@ -7,7 +8,7 @@ export default function Report({latitude, longitude, temperature}) {
 
     return (
         <div>
-            <span>
+            <span className={reportText}>
                 Temperature at {latitude} , {longitude} is {temperature} °C
             </span>
         </div>

@@ -33,16 +33,6 @@
     border: 5px solid yellow;
 }
 
-.button {
-    color: #F6FCFE;
-    background-color: #037AF8;
-    border-radius: 5px;
-    border-color: #037AF8;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+.reportText {
+    margin: initial, auto;
 }
-
-

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Inputs from './Inputs'
 import Report from './Report'
-import {fetchGeolocation, fetchWeather} from '../../utils/api.js'
+import {fetchWeather} from '../../utils/api.js'
 import {component, header, title} from './Temperature.module.css';
 
 export default function Temperature({latitude, longitude, setLatitude, setLongitude}) {
