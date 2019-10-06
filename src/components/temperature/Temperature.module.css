@@ -1,11 +1,38 @@
 .component {
     color: #182633;
-    background-color: #F6FCFE;
+    background-color: #FFFFFF;
+    /* border: 1px solid #D9D9D9; */
+    /* FIXME */
+    border: 5px solid blue;
+    border-radius: 4px;
+    max-width: 600px;
+    /* margin: 20px; */
+    /* padding: 20px; */
+}
+
+.component > div {
+    border-top: 5px solid red;
+    /* margin: 20px; */
+    padding: 20px;
 }
 
 .header {
     /* color: #182633; */
-    /* background-color: #F6FCFE; */
+    background-color: #F7F7F7;
+    display: block;
+}
+
+.title {
+    padding: 20px;
+}
+
+.division {
+    border: 5px solid orange;
+}
+
+.coordinate {
+    display: inline-block;
+    border: 5px solid yellow;
 }
 
 .button {

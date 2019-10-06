@@ -1,16 +1,23 @@
-import React from 'react';
-import {component, header, button} from './Temperature.module.css';
+import React from 'react'
+import Inputs from './Inputs'
+import {component, header, title} from './Temperature.module.css';
 
 function Temperature() {
     return (
         <section className={component}>
-            <h2 className={header}>
-                Temperature
-            </h2>
+            <header className={header}>
+                <h2 className={title}>
+                    Current Temperature For Location
+                </h2>
+            </header>
 
-            <button className={button}>
-                Show Temperature
-            </button>
+            <Inputs />
+
+            <div>
+                <span>
+                    Temperature at LAT , LOG is TEMP °C
+                </span>
+            </div>
         </section>
     )
 }
