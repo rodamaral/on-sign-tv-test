@@ -2,16 +2,20 @@ import React from 'react';
 import Coordinate from './Coordinate'
 import {division, button} from './Temperature.module.css';
 
-function Inputs() {
+export default function Inputs({latitude, longitude, setLatitude, setLongitude}) {
     return (
         <div>
             <div className={division}>
                 <Coordinate
                     label="Latitude"
+                    value={latitude}
+                    setValue={setLatitude}
                 />
 
                 <Coordinate
                     label="Longitude"
+                    value={longitude}
+                    setValue={setLongitude}
                 />
             </div>
 
@@ -23,5 +27,3 @@ function Inputs() {
         </div >
     )
 }
-
-export default Inputs
