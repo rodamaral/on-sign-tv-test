@@ -17,6 +17,8 @@ Only a recent `node` binary with `npm` is needed to run this application. Steps:
 - `npm start` to open the application at `http://localhost:3000` in development mode;
 - `npm run build` to build an optimized bundle.
 
+This app was tested in the latest versions of Firefox and Chromium.
+
 ## Libraries used
 - `react`, `react-dom`: because it's the most sane & efficient way to deal with UI in the browser.
 - `@material-ui`: in order to use the location icon and some helper components: Tooltip, Snackbar and LinearProgress.
