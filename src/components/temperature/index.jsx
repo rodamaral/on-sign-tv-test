@@ -46,16 +46,16 @@ export default function Temperature({latitude, longitude, setLatitude, setLongit
                 onSubmit={onSubmit}
             />
 
-            <SnackError
-                open={open}
-                onClose={handleClose}
-                message={message}
-            />
-
             <Report
                 latitude={reportLat}
                 longitude={reportLong}
                 temperature={temperature}
+            />
+
+            <SnackError
+                open={open}
+                onClose={handleClose}
+                message={message}
             />
         </section>
     )

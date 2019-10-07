@@ -1,21 +1,18 @@
 .component {
     color: #182633;
     background-color: #FFFFFF;
-    /* border: 1px solid #D9D9D9; */
-    /* FIXME */
-    border: 5px solid blue;
+    border: 1px solid #D9D9D9;
     border-radius: 4px;
     max-width: 600px;
+    margin-top: 40px;
 }
 
-.component > div {
-    border-top: 5px solid red;
-    /* margin: 20px; */
+.item {
+    border-top: 1px solid #D9D9D9;
     padding: 20px;
 }
 
 .header {
-    /* color: #182633; */
     background-color: #F7F7F7;
     display: block;
 }
@@ -25,14 +22,26 @@
 }
 
 .division {
-    border: 5px solid orange;
+    display: flex;
+    padding: 10px 10px 0 0;
 }
 
 .coordinate {
     display: inline-block;
-    border: 5px solid yellow;
+    width: 100%;
+    padding: 10px 10px 0 0;
 }
 
-.reportText {
-    margin: initial, auto;
+.input {
+    width: 95%;
+}
+
+.report {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.temperatureText {
+    font-size: 20px;
 }

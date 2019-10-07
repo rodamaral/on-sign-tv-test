@@ -1,5 +1,5 @@
 import React from 'react';
-import {coordinate} from './Temperature.module.css';
+import {coordinate, input} from './Temperature.module.css';
 
 export default function Coordinate({value, label, setValue}) {
     const onChange = event => {
@@ -14,6 +14,7 @@ export default function Coordinate({value, label, setValue}) {
                 type="text"
                 value={value}
                 onChange={onChange}
+                className={input}
             />
         </div>
     )

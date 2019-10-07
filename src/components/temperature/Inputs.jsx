@@ -1,11 +1,11 @@
 import React from 'react';
 import Coordinate from './Coordinate'
 import Button from '../shared/Button'
-import {division} from './Temperature.module.css';
+import {item, division} from './Temperature.module.css';
 
 export default function Inputs({latitude, longitude, setLatitude, setLongitude, onSubmit}) {
     return (
-        <div>
+        <div className={item}>
             <div className={division}>
                 <Coordinate
                     label="Latitude"

@@ -12,17 +12,19 @@ export default function App() {
         <>
             <Header />
 
-            <Location
-                setLatitude={setLatitude}
-                setLongitude={setLongitude}
-            />
+            <div className="centralizedSection" id="main">
+                <Location
+                    setLatitude={setLatitude}
+                    setLongitude={setLongitude}
+                />
 
-            <Temperature
-                latitude={latitude}
-                longitude={longitude}
-                setLatitude={setLatitude}
-                setLongitude={setLongitude}
-            />
+                <Temperature
+                    latitude={latitude}
+                    longitude={longitude}
+                    setLatitude={setLatitude}
+                    setLongitude={setLongitude}
+                />
+            </div>
         </>
     )
 }

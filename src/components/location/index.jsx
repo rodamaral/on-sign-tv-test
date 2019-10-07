@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import MyLocation from '@material-ui/icons/MyLocation'
 import Button from '../shared/Button'
 import SnackError from '../shared/SnackError'
-import {component, locationIcon, input, header} from './Location.module.css';
+import {component, locationIcon, input, header, inputField} from './Location.module.css';
 import {fetchGeolocation, fetchGoogle, fetchGoogleErrors} from '../../utils/api.js'
 
 export default function Location({setLatitude, setLongitude}) {
@@ -75,6 +75,7 @@ export default function Location({setLatitude, setLongitude}) {
                     type="text"
                     value={value}
                     onChange={onChange}
+                    className={inputField}
                 />
 
                 <Button

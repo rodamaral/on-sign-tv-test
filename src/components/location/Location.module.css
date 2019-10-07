@@ -1,9 +1,7 @@
 .component {
     color: #182633;
     background-color: #FFFFFF;
-    /* border: 1px solid #D9D9D9; */
-    /* FIXME */
-    border: 5px solid green;
+    border: 1px solid #D9D9D9;
     border-radius: 4px;
     max-width: 600px;
 }
@@ -12,8 +10,8 @@
     padding: 20px;
 }
 
-.component > div {
-    border-top: 5px solid magenta;
+.component > .input {
+    border: 1px solid #D9D9D9;
     padding: 20px;
 }
 
@@ -29,10 +27,12 @@
 }
 
 .input > * {
-    /* display: flex; */
-    /* flex-flow: row; */
-    /* align-content: space-around; */
     margin-right: 10px;
+}
+
+.inputField {
+    width: 400px;
+    margin-top: 10px;
 }
 
 .locationIcon {
