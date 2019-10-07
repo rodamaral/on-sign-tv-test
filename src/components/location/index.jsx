@@ -5,6 +5,7 @@ import Button from '../shared/Button'
 import SnackError from '../shared/SnackError'
 import {component, locationIcon, input, header, inputField} from './Location.module.css';
 import {fetchGeolocation, fetchGoogle, fetchGoogleErrors} from '../../utils/api.js'
+import {roundCoordinate} from '../../utils/math.js'
 
 export default function Location({setLatitude, setLongitude}) {
     const [value, setValue] = useState('')
@@ -23,8 +24,8 @@ export default function Location({setLatitude, setLongitude}) {
         fetchGeolocation()
             .then(pos => {
                 const crd = pos.coords;
-                setLatitude(crd.latitude)
-                setLongitude(crd.longitude)
+                setLatitude(roundCoordinate(crd.latitude))
+                setLongitude(roundCoordinate(crd.longitude))
                 setOpen(false);
             })
             .catch(error => {
@@ -40,8 +41,8 @@ export default function Location({setLatitude, setLongitude}) {
 
                 if (results.length > 0) {
                     const {lat, lng} = results[0].geometry.location
-                    setLatitude(lat)
-                    setLongitude(lng)
+                    setLatitude(roundCoordinate(lat))
+                    setLongitude(roundCoordinate(lng))
                     setOpen(false);
                 } else {
                     throw new Error('ZERO_RESULTS')
