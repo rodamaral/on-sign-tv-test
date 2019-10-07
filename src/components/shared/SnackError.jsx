@@ -8,7 +8,7 @@ export default function SnackError({
     autoHideDuration = 3000,
     anchorOrigin = {
         vertical: 'bottom',
-        horizontal: 'left',
+        horizontal: 'center',
     },
     onClose,
 }) {
