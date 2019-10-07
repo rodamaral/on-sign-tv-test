@@ -4,6 +4,7 @@ import Location from './components/location'
 import Temperature from './components/temperature'
 
 export default function App() {
+    /* coordinates to be used in the requests and report */
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
 

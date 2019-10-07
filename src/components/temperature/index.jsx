@@ -7,30 +7,32 @@ import {fetchWeather, fetchWeatherErrors} from '../../utils/api.js'
 import {component, header, title} from './Temperature.module.css';
 
 export default function Temperature({latitude, longitude, setLatitude, setLongitude}) {
+    /* the coordinates in the Report are not the same as in the input */
     const [reportLat, setReportLat] = useState('')
     const [reportLong, setReportLong] = useState('')
     const [temperature, setTemperature] = useState('')
-    const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState('');
+    /* loading indicator for request */
     const [loading, setLoading] = useState(false)
+    /* message to show in case of network/API errors */
+    const [message, setMessage] = useState('');
 
+    /* closes the Snackbar */
     const handleClose = () => {
-        setOpen(false)
+        setMessage('')
     }
 
     const onSubmit = () => {
         setLoading(true);
         fetchWeather(latitude, longitude)
             .then(res => {
+                handleClose()
                 setLoading(false);
-                setOpen(false);
                 setTemperature(res.main.temp)
                 setReportLat(latitude)
                 setReportLong(longitude)
             })
             .catch(error => {
                 setLoading(false);
-                setOpen(true);
                 setMessage(fetchWeatherErrors(error))
             })
     }
@@ -61,7 +63,7 @@ export default function Temperature({latitude, longitude, setLatitude, setLongit
             />
 
             <SnackError
-                open={open}
+                open={message !== ''}
                 onClose={handleClose}
                 message={message}
             />

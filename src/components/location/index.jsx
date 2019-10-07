@@ -9,31 +9,36 @@ import {fetchGeolocation, fetchGoogle, fetchGoogleErrors} from '../../utils/api.
 import {roundCoordinate} from '../../utils/math.js'
 
 export default function Location({setLatitude, setLongitude}) {
-    const [value, setValue] = useState('')
-    const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState('');
+    /* location input for controlled component */
+    const [location, setLocation] = useState('')
+    /* loading indicator for request */
     const [loading, setLoading] = useState(false)
+    /* message to show in case of network/API errors */
+    const [message, setMessage] = useState('');
 
+    /* closes the Snackbar */
     const handleClose = () => {
-        setOpen(false)
+        setMessage('')
     }
 
+    /* input controller */
     const onChange = event => {
-        setValue(event.target.value)
+        setLocation(event.target.value)
     }
 
-    const onGetLocation = () => {
+    /* get location from navigator */
+    /* closes the Snackbar */
+    const getLocationFromBrowser = () => {
         setLoading(true);
         fetchGeolocation()
             .then(pos => {
+                handleClose()
                 setLoading(false);
                 const crd = pos.coords;
                 setLatitude(roundCoordinate(crd.latitude))
                 setLongitude(roundCoordinate(crd.longitude))
-                setOpen(false);
             })
             .catch(error => {
-                setOpen(true);
                 setLoading(false);
                 setMessage(error.message)
             })
@@ -50,21 +55,19 @@ export default function Location({setLatitude, setLongitude}) {
                     const {lat, lng} = results[0].geometry.location
                     setLatitude(roundCoordinate(lat))
                     setLongitude(roundCoordinate(lng))
-                    setOpen(false);
+                    handleClose()
                 } else {
                     throw new Error('ZERO_RESULTS')
                 }
             })
             .catch(error => {
                 setLoading(false);
-                setOpen(true);
                 setMessage(fetchGoogleErrors(error))
             })
     }
 
     const onSubmit = () => {
-        console.info('value', value)
-        getLocation(value)
+        getLocation(location)
     }
 
     return (
@@ -74,7 +77,7 @@ export default function Location({setLatitude, setLongitude}) {
                     Enter your location
 
                     <Tooltip title="Click to allow access to your location">
-                        <MyLocation className={locationIcon} size={10} onClick={onGetLocation} />
+                        <MyLocation className={locationIcon} size={10} onClick={getLocationFromBrowser} />
                     </Tooltip>
                 </h3>
             </header>
@@ -85,7 +88,7 @@ export default function Location({setLatitude, setLongitude}) {
             <div className={input}>
                 <input
                     type="text"
-                    value={value}
+                    value={location}
                     onChange={onChange}
                     className={inputField}
                 />
@@ -97,7 +100,7 @@ export default function Location({setLatitude, setLongitude}) {
             </div>
 
             <SnackError
-                open={open}
+                open={message !== ''}
                 onClose={handleClose}
                 message={message}
             />
