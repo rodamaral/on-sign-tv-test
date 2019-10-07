@@ -1,5 +1,7 @@
 # OnSign TV Front-End Programming Test
 
+**Author**: Rodrigo Almeida do Amaral
+
 This application displays the current temperature at a given location.
 The location coordinates can be obtained using the [browser navigator API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) or by typing the name of a city, state, street or address. In this case, a request will be made to the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start) service.
 
@@ -14,6 +16,10 @@ Only a recent `node` binary with `npm` is needed to run this application. Steps:
 - `npm ci` to install the dependencies;
 - `npm start` to open the application at `http://localhost:3000` in development mode;
 - `npm run build` to build an optimized bundle.
+
+## Libraries used
+- `react`, `react-dom`: because it's the most sane & efficient way to deal with UI in the browser.
+- `@material-ui`: in order to use the location icon and some helper components: Tooltip, Snackbar and LinearProgress.
 
 # Create-React-App Notes
 
