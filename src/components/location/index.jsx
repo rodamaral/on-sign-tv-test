@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Tooltip from '@material-ui/core/Tooltip'
+import Progress from '@material-ui/core/LinearProgress'
 import MyLocation from '@material-ui/icons/MyLocation'
 import Button from '../shared/Button'
 import SnackError from '../shared/SnackError'
@@ -11,6 +12,7 @@ export default function Location({setLatitude, setLongitude}) {
     const [value, setValue] = useState('')
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const handleClose = () => {
         setOpen(false)
@@ -21,22 +23,27 @@ export default function Location({setLatitude, setLongitude}) {
     }
 
     const onGetLocation = () => {
+        setLoading(true);
         fetchGeolocation()
             .then(pos => {
+                setLoading(false);
                 const crd = pos.coords;
                 setLatitude(roundCoordinate(crd.latitude))
                 setLongitude(roundCoordinate(crd.longitude))
                 setOpen(false);
             })
             .catch(error => {
-                setMessage(error.message)
                 setOpen(true);
+                setLoading(false);
+                setMessage(error.message)
             })
     }
 
     const getLocation = text => {
+        setLoading(true);
         fetchGoogle(text)
             .then(res => {
+                setLoading(false);
                 const {results} = res
 
                 if (results.length > 0) {
@@ -49,8 +56,9 @@ export default function Location({setLatitude, setLongitude}) {
                 }
             })
             .catch(error => {
-                setMessage(fetchGoogleErrors(error))
+                setLoading(false);
                 setOpen(true);
+                setMessage(fetchGoogleErrors(error))
             })
     }
 
@@ -70,6 +78,9 @@ export default function Location({setLatitude, setLongitude}) {
                     </Tooltip>
                 </h3>
             </header>
+
+            {loading &&
+                <Progress />}
 
             <div className={input}>
                 <input

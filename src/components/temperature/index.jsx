@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Progress from '@material-ui/core/LinearProgress'
 import SnackError from '../shared/SnackError'
 import Inputs from './Inputs'
 import Report from './Report'
@@ -11,22 +12,26 @@ export default function Temperature({latitude, longitude, setLatitude, setLongit
     const [temperature, setTemperature] = useState('')
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const handleClose = () => {
         setOpen(false)
     }
 
     const onSubmit = () => {
+        setLoading(true);
         fetchWeather(latitude, longitude)
             .then(res => {
+                setLoading(false);
+                setOpen(false);
                 setTemperature(res.main.temp)
                 setReportLat(latitude)
                 setReportLong(longitude)
-                setOpen(false);
             })
             .catch(error => {
-                setMessage(fetchWeatherErrors(error))
+                setLoading(false);
                 setOpen(true);
+                setMessage(fetchWeatherErrors(error))
             })
     }
 
@@ -37,6 +42,9 @@ export default function Temperature({latitude, longitude, setLatitude, setLongit
                     Current Temperature For Location
                 </h2>
             </header>
+
+            {loading &&
+                <Progress />}
 
             <Inputs
                 latitude={latitude}
