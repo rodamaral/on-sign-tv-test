@@ -1,0 +1,49 @@
+.component {
+    color: #182633;
+    background-color: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    margin-top: 40px;
+}
+
+.item {
+    border-top: 1px solid #D9D9D9;
+    padding: 20px;
+}
+
+.header {
+    background-color: #F7F7F7;
+    display: block;
+}
+
+.title {
+    padding: 20px;
+}
+
+.division {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 10px 0 0;
+}
+
+.coordinate {
+    display: inline-block;
+    width: 100%;
+    min-width: 200px;
+    max-width: 300px;
+    padding: 10px 10px 0 0;
+}
+
+.input {
+    width: 95%;
+}
+
+.report {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.temperatureText {
+    font-size: 20px;
+}

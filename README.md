@@ -1,3 +1,28 @@
+# OnSign TV Front-End Programming Test
+
+**Author**: Rodrigo Almeida do Amaral
+
+This application displays the current temperature at a given location.
+The location coordinates can be obtained using the [browser navigator API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) or by typing the name of a city, state, street or address. In this case, a request will be made to the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/start) service.
+
+Optionally, the user can enter her coordinates manually.
+
+Once the coordinates are given, the user can click at `Show Temperature` to get a temperature report.
+Error messages are displayed if any input was incorrect or if a network error happened.
+
+## Requirements and Build Steps
+
+Only a recent `node` binary with `npm` is needed to run this application. Steps:
+- `npm ci` to install the dependencies;
+- `npm start` to open the application at `http://localhost:3000` in development mode;
+- `npm run build` to build an optimized bundle.
+
+## Libraries used
+- `react`, `react-dom`: because it's the most sane & efficient way to deal with UI in the browser.
+- `@material-ui`: in order to use the location icon and some helper components: Tooltip, Snackbar and LinearProgress.
+
+# Create-React-App Notes
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -36,33 +61,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

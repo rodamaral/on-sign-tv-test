@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* prevents default gaps between elements */
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+.centralizedSection {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.centralizedSection > * {
+    max-width: 800px;
+    width: 100%;
+}
+
+#main {
+    margin: 40px 0 120px 0;
+}
