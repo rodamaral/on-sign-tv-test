@@ -32,7 +32,7 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6
 }
 
 .centralizedSection > * {
-    max-width: 1024px;
+    max-width: 800px;
     width: 100%;
 }
 
